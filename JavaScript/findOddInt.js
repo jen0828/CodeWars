@@ -30,3 +30,8 @@ function findOdd(A) {
     }
   }
 }
+
+// Alternative solution with the bitwise XOR (exclusive OR, ^) operator
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR
+
+const findOdd = (A) => A.reduce((a, b) => a ^ b);
