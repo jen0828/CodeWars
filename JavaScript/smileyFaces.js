@@ -14,53 +14,6 @@
 
 // My solution:
 
-function smile(text) {
-  return text.replace(/[:;=][-~]?[([]|[)]]([-~][:;=])?/g, (match) => {
-    switch (match) {
-      case ':(':
-        return ':)';
-      case ';(':
-        return ';)';
-      case '=(':
-        return '=)';
-      case ':[':
-        return ':]';
-      case ';[':
-        return ';]';
-      case '=[':
-        return '=]';
-      case ':-(':
-        return ':-)';
-      case ':~(':
-        return ':~)';
-      case ';-(':
-        return ';-)';
-      case ';~(':
-        return ';~)';
-      case ':-[':
-        return ':-]';
-      case ':~[':
-        return ':~]';
-      case ';-[':
-        return ';-]';
-      case ';~[':
-        return ';~]';
-      case '=-[':
-        return '=-]';
-      case '=~[':
-        return '=~]';
-      case '=~(':
-        return '=~)';
-      case '=-(':
-        return '=-)';
-      default:
-        return match;
-    }
-  });
-}
-
-// Refactored version
-
 const EMOTICON_MAPPING = {
   ':(': ':)',
   ';(': ';)',
@@ -86,4 +39,10 @@ function smile(text) {
   return text.replace(/[:;=][-~]?[([]|[)]]([-~][:;=])?/g, (match) => {
     return EMOTICON_MAPPING[match] || match;
   });
+}
+
+// Clever one liner!
+
+function smile(text) {
+  return text.replace(/(?<=[:;=][-~]?)[([]/g, (x) => (x == '(' ? ')' : ']'));
 }
